@@ -1,6 +1,7 @@
 import type { FC } from 'react'
 import PostList from '@/components/PostList'
 import styles from './App.module.css'
+import Button from './components/Button'
 
 const App: FC = () => {
   return (
@@ -11,6 +12,9 @@ const App: FC = () => {
 
       <main className={styles.main}>
         <PostList />
+        <Button>
+          Загрузить ещё
+        </Button>
       </main>
     </div>
   )
