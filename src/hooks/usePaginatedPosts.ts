@@ -7,12 +7,12 @@ import type { UsePaginatedPostsReturn } from '@/types/post'
  * Бизнес-логика и состояние живут в postsStore
  */
 export function usePaginatedPosts(): UsePaginatedPostsReturn {
-  const { posts, loadingMore, loadInitial, loadMore } =
+  const { posts, loading, loadingMore, error, hasMore, loadInitial, loadMore, retry } =
     usePostsStore()
 
   useEffect(() => {
     loadInitial()
-  }, [])
+  }, [loadInitial])
 
-  return { posts, loadingMore, loadMore, }
+  return { posts, loading, loadingMore, error, hasMore, loadMore, retry}
 }

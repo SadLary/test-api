@@ -12,6 +12,10 @@ export interface FetchPostsParams {
 
 export interface UsePaginatedPostsReturn {
   posts: Post[]
+  loading: boolean
   loadingMore: boolean
+  error: string | null
+  hasMore: boolean
   loadMore: () => void
+  retry: () => void
 }

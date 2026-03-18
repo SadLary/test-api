@@ -4,7 +4,6 @@ import type { Post } from '@/types/post'
 
 const POSTS_PER_PAGE = 10
 
-// можно было бы описать в types, если бы использовался где-то ещё
 interface PostsState {
   posts: Post[]
   loading: boolean
@@ -17,6 +16,7 @@ interface PostsState {
 interface PostsActions {
   loadInitial: () => Promise<void>
   loadMore: () => Promise<void>
+  retry: () => Promise<void>
 }
 
 type PostsStore = PostsState & PostsActions
@@ -69,5 +69,10 @@ export const usePostsStore = create<PostsStore>()((set, get) => ({
       const message = err instanceof Error ? err.message : 'Неизвестная ошибка'
       set({ loadingMore: false, error: `Ошибка загрузки. ${message}` })
     }
+  },
+
+  retry: async () => {
+    set({ ...initialState })
+    await get().loadInitial()
   },
 }))
