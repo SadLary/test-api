@@ -1,18 +1,17 @@
-import type { FC } from 'react'
 import PostCard from './PostCard'
+import type { Post } from '@/types/post'
 import styles from './PostList.module.css'
 
+interface Props {
+  posts: Post[]
+}
 
-const PostList: FC = () => {
+const PostList = ({posts}:Props) => {
   return (
     <section className={styles.grid} aria-label="Лента постов">
-      <PostCard />
-      <PostCard />
-      <PostCard />
-      <PostCard />
-      <PostCard />
-      <PostCard />
-      <PostCard />
+      {posts.map(post=> (
+        <PostCard key={post.id} post={post}/>
+      ))}
     </section>
   )
 }
